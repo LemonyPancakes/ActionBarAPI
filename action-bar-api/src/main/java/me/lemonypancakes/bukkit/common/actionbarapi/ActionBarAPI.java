@@ -20,7 +20,6 @@ package me.lemonypancakes.bukkit.common.actionbarapi;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public final class ActionBarAPI extends JavaPlugin {
 
@@ -34,24 +33,11 @@ public final class ActionBarAPI extends JavaPlugin {
             final Class<?> clazz = Class.forName("me.lemonypancakes.bukkit.common.actionbarapi." + version + ".CraftActionBar");
 
             if (ActionBar.class.isAssignableFrom(clazz)) {
-                ActionBarAPI.setActionBar((ActionBar) clazz.getConstructor().newInstance());
+                ActionBarAPI.actionBar = (ActionBar) clazz.getConstructor().newInstance();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void onEnable() {
-        new BukkitRunnable() {
-
-            @Override
-            public void run() {
-                Bukkit.getOnlinePlayers().forEach(player -> {
-                    ActionBarAPI.sendMessage(player, "HELLO");
-                });
-            }
-        }.runTaskTimer(this, 0L, 1L);
     }
 
     public static ActionBar getActionBar() {
