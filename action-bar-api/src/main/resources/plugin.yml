@@ -1,0 +1,5 @@
+name: ActionBarAPI
+version: '${project.version}'
+main: me.lemonypancakes.bukkit.common.actionbarapi.ActionBarAPI
+api-version: 1.19
+authors: [ LemonyPancakes ]
