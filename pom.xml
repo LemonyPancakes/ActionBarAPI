@@ -23,7 +23,7 @@
 
     <groupId>me.lemonypancakes.bukkit.common.actionbarapi</groupId>
     <artifactId>action-bar-api-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <modules>
         <module>action-bar-api</module>
         <module>action-bar-api-v1_8_R1</module>
