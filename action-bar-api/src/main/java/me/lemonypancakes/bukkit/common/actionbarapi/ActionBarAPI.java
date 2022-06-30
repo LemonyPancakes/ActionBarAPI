@@ -25,7 +25,7 @@ public final class ActionBarAPI extends JavaPlugin {
 
     private static ActionBar actionBar;
 
-    public ActionBarAPI() {
+    static {
         String packageName = Bukkit.getServer().getClass().getPackage().getName();
         String version = packageName.substring(packageName.lastIndexOf('.') + 1);
 
