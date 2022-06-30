@@ -1,5 +1,5 @@
 /*
- * Origins-Bukkit - Origins for Bukkit and forks of Bukkit.
+ * ActionBarAPI - Action bar API for Bukkit and forks of Bukkit.
  * Copyright (C) 2022 LemonyPancakes
  *
  * This program is free software: you can redistribute it and/or modify
