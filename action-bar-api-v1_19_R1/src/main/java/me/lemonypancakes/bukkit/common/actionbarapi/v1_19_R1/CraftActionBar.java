@@ -23,13 +23,24 @@ import net.minecraft.network.protocol.game.ClientboundSystemChatPacket;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+
 public class CraftActionBar implements ActionBar {
 
     @Override
     public void sendMessage(Player player, String message) {
         IChatBaseComponent iChatBaseComponent = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + message + "\"}");
-        ClientboundSystemChatPacket packetPlayOutChat = new ClientboundSystemChatPacket(iChatBaseComponent, 2);
+        ClientboundSystemChatPacket clientboundSystemChatPacket;
 
-        ((CraftPlayer) player).getHandle().b.a(packetPlayOutChat);
+        try {
+            Class<?> clazz = Class.forName(ClientboundSystemChatPacket.class.getName());
+            Constructor<?> constructor = clazz.getConstructor(IChatBaseComponent.class, int.class);
+
+            clientboundSystemChatPacket = (ClientboundSystemChatPacket) constructor.newInstance(iChatBaseComponent, 2);
+        } catch (ClassNotFoundException | NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
+            clientboundSystemChatPacket = new ClientboundSystemChatPacket(iChatBaseComponent, true);
+        }
+        ((CraftPlayer) player).getHandle().b.a(clientboundSystemChatPacket);
     }
 }
